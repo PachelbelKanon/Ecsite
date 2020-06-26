@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+
+/* -------------------全頁共通　BODY------------------- */
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* -------------------全頁共通　header------------------- */
+
+header {
+  margin: 0;
+  padding: 0;
+  background: green;
+  color: white;
+  height: 70px;
+}
+
+header * {
+  display: inline-block;
+}
+
+header h1 {
+  margin: 0;
+  padding: 0;
+  margin-left: 20px;
+}
+
+header div {
+  float: right;
+  margin-right: 20px;
+  margin-top: 10px;
+}
+
+header span {
+  float: right;
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+/* -------------------全頁共通 ID adminPage------------------- */
+#adminPage {
+  margin: 0 30px;
+}

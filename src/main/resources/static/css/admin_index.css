@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+/* -------------------input------------------- */
+input[name=userName] {
+  width: 100px;
+}
+
+input[name=password]{
+  width: 100px;
+}

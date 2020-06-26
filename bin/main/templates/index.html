@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+<head>
+<meta charset="UTF-8" />
+<link href="/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+<link href="/css/admin_welcome.css" th:href="@{/css/admin_welcome.css}" rel="stylesheet" />
+<link href="/css/admin_index.css" th:href="@{/css/admin_index.css}" rel="stylesheet" />
+<script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<link rel="stylesheet"
+href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css"></link>
+<script src="/js/common.js" th:src="@{/js/common.js}"></script>
+<script>
+	let cartList = [];
+	
+	$(() => {
+		$('#loginForm').on('submit', login);
+		$('.cartBtn').on('click',addCart);
+		$('#buyBtn').on('click', buy);
+		$('#historyBtn').on('click', showHistory);
+		
+	$('#history').dialog({
+		autoOpen: false,
+		width: 550,
+		modal: true,
+		buttons: [{
+			text: 'OK',
+			click: function(){
+				$(this).dialog('close');
+			}
+		},
+		]
+	});
+	});
+</script>
+<title>ECサイト</title>
+</head>
+<body>
+
+	<!-- Header -->
+	<header>
+		<h1>My EC Site</h1>
+		<div>
+			<!-- LoginForm -->
+			<form name="loginForm" id="loginForm" method="post" action="#">
+				User name:<input type="text" name="userName" />
+				Password:<input type="password" name="password" />
+				<button type="submit">Login</button>
+			</form>
+			<!-- /LoginForm -->
+			<br />
+			<span id="welcome"> -- ようこそ！ テストさん</span>
+			<input type="hidden" id="hiddenUserId" value="0" />
+		</div>
+	</header>
+	<!-- /Header -->
+
+	<!-- GoodsTable -->
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>商品名</th>
+				<th>価格</th>
+				<th>注文数</th>
+				<th>カート</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr th:each="item : ${goods}">
+				<td th:text="${item.id}" />
+				<td th:text="${item.goodsName}" />
+				<td th:text="${item.price}" />
+				<td><input type="number" class="count" value="0" /></td>
+				<td><button type="submit" class="cartBtn">カートに入れる</button></td>
+		</tbody>
+
+	</table>
+	<!-- /GoodsTable -->
+
+	<!-- CartField -->
+	<fieldset>
+		<legend>カート</legend>
+		
+		<!-- CartTable -->
+		<table id="cart">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>商品名</th>
+					<th>価格</th>
+					<th>注文数</th>
+					<th>カート</th>
+				</tr>
+			</thead>
+
+			<!-- Cart-->
+			<tbody>
+			</tbody>
+			<!-- /Cart -->
+		</table>
+		<!-- /CartTable -->
+		
+		<!-- CartButton -->
+		<button id="buyBtn">購入</button>
+		<button id="historyBtn">履歴</button>
+		<!-- /CartButton -->
+
+	</fieldset>
+	<!-- /CartField -->
+
+	<!-- HistoryBlock -->
+	<div id="history" title="購入履歴" style="display:none;">
+		<!-- historyTable -->
+		<table id="historyTable">
+		
+			<thead>
+				<tr>
+					<th>商品名</th>
+					<th>注文数</th>
+					<th>購入日時</th>
+				</tr>
+			</thead>
+
+			<!-- History -->
+			<tbody>
+			</tbody>
+			<!-- History -->
+
+		</table>
+		<!-- /historyTable -->
+	</div>
+	<!-- HistoryBlock -->
+
+
+</body>
+</html>
